@@ -1,0 +1,113 @@
+import React from "react";
+import "./StepIndicator.css";
+
+const StepIndicator = ({ steps, currentStep }) => {
+  return (
+    <div className="step-indicator">
+      {steps.map((step, index) => (
+        <div
+          key={index}
+          className={`step ${index <= currentStep ? "active" : ""}`}
+        >
+          <div className="circle">{index + 1}</div>
+          <div className="label">{step}</div>
+          {index < steps.length - 1 && <div className="line"></div>}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default StepIndicator;
+
+
+
+
+.step-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .step {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #d3d3d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .step.active .circle {
+    background-color: black;
+  }
+  
+  .label {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+  }
+  
+  .step.active .label {
+    color: black;
+  }
+  
+  .line {
+    height: 2px;
+    background-color: #d3d3d3;
+    flex-grow: 1;
+    margin: 0 5px;
+  }
+  
+  .step.active ~ .line {
+    background-color: #d3d3d3;
+  }
+  
+
+
+
+  import React from "react";
+import StepIndicator from "./StepIndicator";
+
+const App = () => {
+  const steps = ["Frame 1", "Frame 2", "Frame 3"];
+  const currentStep = 0; // Index of the active step (0-based)
+
+  return (
+    <div>
+      <StepIndicator steps={steps} currentStep={currentStep} />
+    </div>
+  );
+};
+
+export default App;
+
+
+
+.line {
+    height: 2px;
+    background-color: #d3d3d3;
+    flex-grow: 1; /* Ensures the line stretches */
+    margin: 0 20px; /* Increase the margin to add more space between circles */
+  }
+    
+  
+
+  .step-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px; /* Adjust the gap between the circles */
+  }
+  
