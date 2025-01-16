@@ -111,3 +111,54 @@ export default App;
     gap: 40px; /* Adjust the gap between the circles */
   }
   
+
+
+
+  const generatePDF = () => {
+    const pdf = new jsPDF();
+
+    // Header Section
+    pdf.setFontSize(10);
+    pdf.text("FORM", 10, 10);
+    pdf.text("ITR-6", 20, 10);
+    pdf.text("Assessment Year", 170, 10, { align: "right" });
+    pdf.text("2024-25", 200, 10, { align: "right" });
+
+    pdf.setFontSize(12);
+    pdf.text("INDIAN INCOME TAX RETURN", 75, 20);
+    pdf.setFontSize(10);
+    pdf.text("(For Companies other than companies claiming exemption under section 11)", 35, 25);
+    pdf.text("(Please see Rule 12 of the Income-tax Rules, 1962)", 50, 30);
+    pdf.text("(Please refer instructions)", 75, 35);
+
+    // Table Title
+    pdf.setFillColor(200, 200, 200);
+    pdf.rect(10, 40, 190, 10, "F");
+    pdf.setFontSize(10);
+    pdf.text("Schedule GST", 12, 47);
+    pdf.text("INFORMATION REGARDING TURNOVER/GROSS RECEIPT REPORTED FOR GST", 50, 47);
+
+    // Table Headers
+    pdf.setDrawColor(0, 0, 0);
+    pdf.setLineWidth(0.1);
+    pdf.rect(10, 50, 190, 40); // Outer border
+    pdf.line(60, 50, 60, 90); // Column 1 (Sl. No.)
+    pdf.line(140, 50, 140, 90); // Column 2 (GSTIN No.)
+    pdf.line(10, 60, 200, 60); // Header row
+
+    pdf.text("Sl. No.", 30, 57);
+    pdf.text("GSTIN No(s).", 90, 57);
+    pdf.text("Annual value of outward supplies as per the GST return(s) filed", 145, 57, { align: "center" });
+
+    // Table Footer
+    pdf.setFontSize(8);
+    pdf.text("Total", 12, 87);
+    pdf.text("0", 185, 87, { align: "right" });
+
+    // Footer Note
+    pdf.setFontSize(10);
+    pdf.text("NOTE: Please furnish the information above for each GSTIN No. separately", 12, 100);
+
+    // Save the PDF
+    pdf.save("ScheduleGST.pdf");
+  };
